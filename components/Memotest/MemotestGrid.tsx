@@ -185,7 +185,7 @@ const Memotest: React.FC<Record<string, never>> = () => {
 	}
 
 	return (
-		<View>
+		<View style={styles.container}>
 			<FlatList
 				data={dataWithKeys.current}
 				renderItem={renderRow}
@@ -207,6 +207,9 @@ const Memotest: React.FC<Record<string, never>> = () => {
 export default Memotest
 
 const styles = StyleSheet.create({
+    container: {
+        minHeight: 550
+    },
 	item: {
 		padding: 20,
 		marginRight: 10,
@@ -224,5 +227,6 @@ const styles = StyleSheet.create({
 	},
 	flatList: {
 		flexGrow: 0,
+        marginBottom: .5
 	},
 })
