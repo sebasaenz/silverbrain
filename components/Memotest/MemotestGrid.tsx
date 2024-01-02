@@ -10,7 +10,7 @@ import {
 	ItemData,
 	MEMOTEST_DUMMY_DATA,
 	generateMemotestGridData,
-} from '../../constants/memotest'
+} from '../../utils/memotest'
 import { useMediaQuery } from 'react-responsive'
 
 interface ItemProps {
