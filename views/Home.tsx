@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { AvailableLanguage } from '../i18n'
-import images from '../images'
+import images from '../imageLoader'
 
 const Home: React.FC<Record<string, never>> = () => {
 	const { t, i18n } = useTranslation()
