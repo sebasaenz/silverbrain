@@ -1,0 +1,13 @@
+{
+	"common": {
+		"memotest": "Memotest",
+		"opposites": "Opuestos"
+	},
+	"home": {
+		"choose_game": "Elija un juego"
+	},
+	"memotest": {
+		"duration": "Duración",
+		"right_guesses": "Aciertos"
+	}
+}

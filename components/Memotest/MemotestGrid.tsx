@@ -12,6 +12,7 @@ import {
 	generateMemotestGridData,
 } from '../../utils/memotest'
 import { useMediaQuery } from 'react-responsive'
+import { useTranslation } from 'react-i18next'
 
 interface ItemProps {
 	item: ItemData
@@ -103,6 +104,7 @@ const Item: React.FC<ItemProps> = ({
 }
 
 const Memotest: React.FC<Record<string, never>> = () => {
+	const { t } = useTranslation()
 	const isTabletOrMobileDevice = useMediaQuery({
 		query: '(max-device-width: 1224px)',
 	})
@@ -193,10 +195,10 @@ const Memotest: React.FC<Record<string, never>> = () => {
 			/>
 			<View style={{ display: duration > 0 ? undefined : 'none' }}>
 				<Text style={{ fontSize: 20 }}>
-					<strong>Duration:</strong> {formatDuration(duration)}
+					<strong>{t('memotest.duration')}:</strong> {formatDuration(duration)}
 				</Text>
 				<Text style={{ fontSize: 20 }}>
-					<strong>Right guesses:</strong> {rightGuesses} /{' '}
+					<strong>{t('memotest.right_guesses')}:</strong> {rightGuesses} /{' '}
 					{rightGuesses + wrongGuesses}
 				</Text>
 			</View>
@@ -207,9 +209,9 @@ const Memotest: React.FC<Record<string, never>> = () => {
 export default Memotest
 
 const styles = StyleSheet.create({
-    container: {
-        minHeight: 550
-    },
+	container: {
+		minHeight: 550,
+	},
 	item: {
 		padding: 20,
 		marginRight: 10,
@@ -227,6 +229,6 @@ const styles = StyleSheet.create({
 	},
 	flatList: {
 		flexGrow: 0,
-        marginBottom: .5
+		marginBottom: 0.5,
 	},
 })

@@ -1,0 +1,13 @@
+{
+	"common": {
+		"memotest": "Memotest",
+		"opposites": "Kontrakoak"
+	},
+	"home": {
+		"choose_game": "Aukeratu joko bat"
+	},
+	"memotest": {
+		"duration": "Iraupena",
+		"right_guesses": "Arrakastak"
+	}
+}

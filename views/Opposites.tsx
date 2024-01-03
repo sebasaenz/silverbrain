@@ -1,21 +1,21 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
-import MemotestGrid from '../components/Memotest/MemotestGrid'
+import OppositesGame from '../components/Opposites/OppositesGame'
 import { useTranslation } from 'react-i18next'
 
-const Memotest: React.FC<Record<string, never>> = () => {
+const Opposites: React.FC<Record<string, never>> = () => {
 	const { t } = useTranslation()
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.header}>{t('common.memotest')}</Text>
-			<MemotestGrid />
+			<Text style={styles.header}>{t('common.opposites')}</Text>
+			<OppositesGame />
 			<StatusBar style="auto" />
 		</View>
 	)
 }
 
-export default Memotest
+export default Opposites
 
 const styles = StyleSheet.create({
 	container: {

@@ -1,0 +1,13 @@
+{
+	"common": {
+		"memotest": "Memotest",
+		"opposites": "Oposats"
+	},
+	"home": {
+		"choose_game": "Escolliu un joc"
+	},
+	"memotest": {
+		"duration": "Durada",
+		"right_guesses": "Encerts"
+	}
+}
