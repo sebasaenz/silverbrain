@@ -63,6 +63,12 @@ const OppositesGame: React.FC<Record<string, never>> = () => {
 		setCorrectlyGuessedWords([])
 		setSelectedLeftSideWord(undefined)
 		setSelectedRightSideWord(undefined)
+		leftSideWords.current = getRandomlySortedArray([
+			...Object.keys(WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage]),
+		])
+		rightSideWords.current = getRandomlySortedArray([
+			...Object.values(WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage]),
+		])
 		setIsGameOver(false)
 	}
 
