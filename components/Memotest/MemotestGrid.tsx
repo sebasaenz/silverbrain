@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import {
+	Animated,
 	FlatList,
 	StyleSheet,
 	Text,
@@ -13,6 +14,7 @@ import {
 } from '../../utils/memotest'
 import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from 'react-i18next'
+import SimpleModal from '../Common/SimpleModal'
 
 interface ItemProps {
 	item: ItemData
@@ -41,7 +43,7 @@ const Row: React.FC<RowProps> = ({
 	isTabletOrMobileDevice,
 }) => {
 	return (
-		<View style={styles.row}>
+		<Animated.View style={styles.row}>
 			{row.map((item) => (
 				<Item
 					item={item}
@@ -50,9 +52,10 @@ const Row: React.FC<RowProps> = ({
 					guessedItems={guessedItems}
 					disabled={disabled}
 					isTabletOrMobileDevice={isTabletOrMobileDevice}
+					key={item.key}
 				/>
 			))}
-		</View>
+		</Animated.View>
 	)
 }
 
@@ -109,6 +112,8 @@ const Memotest: React.FC<Record<string, never>> = () => {
 		query: '(max-device-width: 1224px)',
 	})
 
+	const [isGameOver, setIsGameOver] = useState<boolean>(false)
+
 	const [selectedItems, setSelectedItems] = useState<number[]>([])
 	const [guessedItems, setGuessedItems] = useState<number[]>([])
 	const [disabled, setDisabled] = useState<boolean>(false)
@@ -143,6 +148,7 @@ const Memotest: React.FC<Record<string, never>> = () => {
 						.reduce((el: number, acc: number) => acc + el)
 				) {
 					setDuration(Date.now() - startTime!)
+					setIsGameOver(true)
 				}
 
 				setRightGuesses(rightGuesses + 1)
@@ -186,6 +192,16 @@ const Memotest: React.FC<Record<string, never>> = () => {
 		return `${minutes}m ${seconds}s`
 	}
 
+	const resetGame = () => {
+		setSelectedItems([])
+		setGuessedItems([])
+		setStartTime(0)
+		setDuration(0)
+		setRightGuesses(0)
+		setWrongGuesses(0)
+		setIsGameOver(false)
+	}
+
 	return (
 		<View style={styles.container}>
 			<FlatList
@@ -193,15 +209,21 @@ const Memotest: React.FC<Record<string, never>> = () => {
 				renderItem={renderRow}
 				style={styles.flatList}
 			/>
-			<View style={{ display: duration > 0 ? undefined : 'none' }}>
-				<Text style={{ fontSize: 20 }}>
-					<strong>{t('memotest.duration')}:</strong> {formatDuration(duration)}
-				</Text>
-				<Text style={{ fontSize: 20 }}>
-					<strong>{t('memotest.right_guesses')}:</strong> {rightGuesses} /{' '}
-					{rightGuesses + wrongGuesses}
-				</Text>
-			</View>
+			<SimpleModal isModalVisible={isGameOver} onRequestClose={resetGame}>
+				<View style={{ display: duration > 0 ? undefined : 'none' }}>
+					<Text style={{ fontSize: 20 }}>
+						<strong>{t('memotest.duration')}:</strong>{' '}
+						{formatDuration(duration)}
+					</Text>
+					<Text style={{ fontSize: 20 }}>
+						<strong>{t('memotest.right_guesses')}:</strong> {rightGuesses} /{' '}
+						{rightGuesses + wrongGuesses}
+					</Text>
+					<TouchableOpacity onPress={resetGame} style={styles.playAgainButton}>
+						<Text>{t('common.play_again')}</Text>
+					</TouchableOpacity>
+				</View>
+			</SimpleModal>
 		</View>
 	)
 }
@@ -218,6 +240,7 @@ const styles = StyleSheet.create({
 		marginBottom: 10,
 		display: 'flex',
 		justifyContent: 'center',
+		borderRadius: 5,
 	},
 	title: {
 		fontSize: 32,
@@ -230,5 +253,15 @@ const styles = StyleSheet.create({
 	flatList: {
 		flexGrow: 0,
 		marginBottom: 0.5,
+	},
+	playAgainButton: {
+		marginTop: 30,
+		borderWidth: 1,
+		borderColor: '#e0e0e0',
+		borderRadius: 5,
+		padding: 10,
+		display: 'flex',
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 })

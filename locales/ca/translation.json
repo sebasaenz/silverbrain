@@ -1,7 +1,15 @@
 {
 	"common": {
 		"memotest": "Memotest",
-		"opposites": "Oposats"
+		"opposites": "Oposats",
+		"calculator": "Calculadora",
+		"choose_a_level": "Escolliu un nivell",
+		"easy": "Fàcil",
+		"medium": "Intermedi",
+		"hard": "Difícil",
+		"start": "Començar",
+		"play_again": "Jugar de nou",
+		"well_done": "Ben fet!"
 	},
 	"home": {
 		"choose_game": "Escolliu un joc"
@@ -9,5 +17,8 @@
 	"memotest": {
 		"duration": "Durada",
 		"right_guesses": "Encerts"
+	},
+	"calculator": {
+		"validate": "Validar"
 	}
 }

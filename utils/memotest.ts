@@ -1,3 +1,5 @@
+import { getRandomlySortedArray } from './common'
+
 export interface ItemData {
 	key?: number
 	title: string
@@ -43,9 +45,7 @@ export const generateMemotestGridData = (
 	data: ItemData[],
 	gridSize: number = 4,
 ) => {
-	let duplicatedRandomizedData = [...data, ...data].sort(
-		() => 0.5 - Math.random(),
-	)
+	let duplicatedRandomizedData = getRandomlySortedArray([...data, ...data])
 	let gridData: ItemData[][] = []
 
 	let dataCounter = 0

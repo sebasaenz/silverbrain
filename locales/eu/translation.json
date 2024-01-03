@@ -1,7 +1,15 @@
 {
 	"common": {
 		"memotest": "Memotest",
-		"opposites": "Kontrakoak"
+		"opposites": "Kontrakoak",
+		"calculator": "Kalkulagailua",
+		"choose_a_level": "Maila bat aukeratu",
+		"easy": "Erraza",
+		"medium": "Tartekoa",
+		"hard": "Zaila",
+		"start": "Hasi",
+		"play_again": "Berriz jokatu",
+		"well_done": "Ongi egina!"
 	},
 	"home": {
 		"choose_game": "Aukeratu joko bat"
@@ -9,5 +17,8 @@
 	"memotest": {
 		"duration": "Iraupena",
 		"right_guesses": "Arrakastak"
+	},
+	"calculator": {
+		"validate": "Baliozkotu"
 	}
 }

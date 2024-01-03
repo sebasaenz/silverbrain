@@ -4,13 +4,20 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { AvailableLanguage } from '../i18n'
 import images from '../imageLoader'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Home: React.FC<Record<string, never>> = () => {
 	const { t, i18n } = useTranslation()
 	const languages: AvailableLanguage[] = ['es', 'ca', 'eu', 'en']
 
-	const changeLanguageHandler = (lang: AvailableLanguage) =>
-		i18n.changeLanguage(lang)
+	const changeLanguageHandler = async (lang: AvailableLanguage) => {
+		try {
+			await AsyncStorage.setItem('lang', lang)
+			i18n.changeLanguage(lang)
+		} catch (e) {
+			throw e
+		}
+	}
 
 	return (
 		<View style={styles.container}>
@@ -37,6 +44,9 @@ const Home: React.FC<Record<string, never>> = () => {
 			<Link style={styles.link} to={{ screen: 'Opposites' }}>
 				{t('common.opposites')}
 			</Link>
+			<Link style={styles.link} to={{ screen: 'Calculator' }}>
+				{t('common.calculator')}
+			</Link>
 			<StatusBar style="auto" />
 		</View>
 	)
@@ -59,7 +69,7 @@ const styles = StyleSheet.create({
 	link: {
 		fontSize: 20,
 		letterSpacing: 4,
-		marginBottom: 10,
+		marginBottom: 15,
 	},
 	image: {
 		width: 60,

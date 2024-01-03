@@ -1,7 +1,15 @@
 {
 	"common": {
 		"memotest": "Memotest",
-		"opposites": "Opuestos"
+		"opposites": "Opuestos",
+		"calculator": "Calculadora",
+		"choose_a_level": "Elija un nivel",
+		"easy": "Fácil",
+		"medium": "Intermedio",
+		"hard": "Difícil",
+		"start": "Comenzar",
+		"play_again": "Jugar de nuevo",
+		"well_done": "¡Bien hecho!"
 	},
 	"home": {
 		"choose_game": "Escoja un juego"
@@ -9,5 +17,8 @@
 	"memotest": {
 		"duration": "Duración",
 		"right_guesses": "Aciertos"
+	},
+	"calculator": {
+		"validate": "Validar"
 	}
 }
