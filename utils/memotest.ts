@@ -44,7 +44,7 @@ export const MEMOTEST_DUMMY_DATA: ItemData[] = [
 export const generateMemotestGridData = (
 	data: ItemData[],
 	gridSize: number = 4,
-) => {
+): ItemData[][] => {
 	let duplicatedRandomizedData = getRandomlySortedArray([...data, ...data])
 	let gridData: ItemData[][] = []
 
