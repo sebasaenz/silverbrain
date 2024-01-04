@@ -210,7 +210,7 @@ const Memotest: React.FC<Record<string, never>> = () => {
 				style={styles.flatList}
 			/>
 			<SimpleModal isModalVisible={isGameOver} onRequestClose={resetGame}>
-				<View style={{ display: duration > 0 ? undefined : 'none' }}>
+				<View>
 					<Text style={{ fontSize: 20 }}>
 						<strong>{t('memotest.duration')}:</strong>{' '}
 						{formatDuration(duration)}

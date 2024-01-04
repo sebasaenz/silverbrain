@@ -20,5 +20,14 @@
 	},
 	"calculator": {
 		"validate": "Baliozkotu"
+	},
+	"settings": {
+		"title": "Ezarpenak",
+		"account_info": "Kontuaren informazioa",
+		"log_in": "Saioa hasi",
+		"create_account": "Kontu bat sortu",
+		"privacy_settings": "Pribatutasun-ezarpenak",
+		"app_info": "Aplikazioari buruzko informazioa",
+		"contact_us": "Jarri gurekin harremanetan"
 	}
 }

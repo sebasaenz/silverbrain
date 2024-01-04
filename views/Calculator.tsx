@@ -1,10 +1,8 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import CalculatorSubcomponent from '../components/Calculator/Calculator'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import { CalculatorLevel, AVAILABLE_LEVELS } from '../utils/calculator'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import _ from 'lodash'
 
 const Calculator: React.FC<Record<string, never>> = () => {
@@ -28,7 +26,8 @@ const Calculator: React.FC<Record<string, never>> = () => {
 							onPress={() => setLevel(availableLevel)}
 							style={{
 								...styles.levelSelector,
-								backgroundColor: availableLevel == level ? 'lightblue' : '#fff',
+								backgroundColor:
+									availableLevel == level ? 'lightblue' : 'transparent',
 							}}
 							key={availableLevel}
 						>
@@ -42,13 +41,14 @@ const Calculator: React.FC<Record<string, never>> = () => {
 							onPress={() => setHasGameStarted(true)}
 							style={{ ...styles.startGameButton, alignSelf: 'center' }}
 						>
-							<Text style={styles.startGameButtonText}>Comenzar</Text>
+							<Text style={styles.startGameButtonText}>
+								{t('common.start')}
+							</Text>
 						</TouchableOpacity>
 					)}
 				</View>
 			)}
 			{hasGameStarted && <CalculatorSubcomponent level={level || 'easy'} />}
-			<StatusBar style="auto" />
 		</View>
 	)
 }
@@ -58,12 +58,13 @@ export default Calculator
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff',
+		backgroundColor: '#fff8f2',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
 	innerContainer: {
 		minHeight: 400,
+		width: 250,
 	},
 	header: {
 		fontSize: 30,

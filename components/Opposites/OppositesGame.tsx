@@ -14,12 +14,18 @@ const OppositesGame: React.FC<Record<string, never>> = () => {
 		query: '(max-device-width: 1224px)',
 	})
 
-	const leftSideWords = useRef(getRandomlySortedArray([
-		...Object.keys(WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage]),
-	]))
-	const rightSideWords = useRef(getRandomlySortedArray([
-		...Object.values(WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage]),
-	]))
+	const leftSideWords = useRef(
+		getRandomlySortedArray([
+			...Object.keys(WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage]),
+		]),
+	)
+	const rightSideWords = useRef(
+		getRandomlySortedArray([
+			...Object.values(
+				WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage],
+			),
+		]),
+	)
 
 	const [selectedLeftSideWord, setSelectedLeftSideWord] = useState<string>()
 	const [selectedRightSideWord, setSelectedRightSideWord] = useState<string>()
@@ -67,7 +73,9 @@ const OppositesGame: React.FC<Record<string, never>> = () => {
 			...Object.keys(WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage]),
 		])
 		rightSideWords.current = getRandomlySortedArray([
-			...Object.values(WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage]),
+			...Object.values(
+				WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage],
+			),
 		])
 		setIsGameOver(false)
 	}
@@ -130,14 +138,10 @@ const OppositesGame: React.FC<Record<string, never>> = () => {
 				))}
 			</View>
 			<SimpleModal isModalVisible={isGameOver} onRequestClose={resetGame}>
-				<View
-					style={{
-						display: 'flex',
-						justifyContent: 'center',
-						alignItems: 'center',
-					}}
-				>
-					<Text style={{ fontSize: 20 }}>{t('common.well_done')}</Text>
+				<View>
+					<Text style={{ fontSize: 20, textAlign: 'center' }}>
+						{t('common.well_done')}
+					</Text>
 					<TouchableOpacity onPress={resetGame} style={styles.playAgainButton}>
 						<Text>{t('common.play_again')}</Text>
 					</TouchableOpacity>

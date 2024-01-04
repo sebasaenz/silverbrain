@@ -5,7 +5,6 @@ import en from './locales/en/translation.json'
 import es from './locales/es/translation.json'
 import ca from './locales/ca/translation.json'
 import eu from './locales/eu/translation.json'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export type AvailableLanguage = 'en' | 'es' | 'ca' | 'eu'
 
@@ -25,6 +24,7 @@ const resources = {
 }
 
 i18n.use(initReactI18next).init({
+	compatibilityJSON: 'v3',
 	resources,
 	lng: 'es',
 	interpolation: {

@@ -1,5 +1,12 @@
 import { useTranslation } from 'react-i18next'
-import { View, StyleSheet, Text, TextInput } from 'react-native'
+import {
+	View,
+	StyleSheet,
+	Text,
+	TextInput,
+	TouchableOpacity,
+	Platform,
+} from 'react-native'
 import {
 	Calculation,
 	CalculatorLevel,
@@ -8,15 +15,19 @@ import {
 	generateEmptyCalculationInputs,
 	DEFAULT_NUMBER_OF_CALCULATIONS,
 } from '../../utils/calculator'
-import { useEffect, useRef, useState } from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useEffect, useState } from 'react'
 import SimpleModal from '../Common/SimpleModal'
+import { useMediaQuery } from 'react-responsive'
 
 interface CalculatorProps {
 	level: CalculatorLevel
 }
 
 const Calculator: React.FC<CalculatorProps> = ({ level }) => {
+	const isTabletOrMobileDevice = useMediaQuery({
+		query: '(max-device-width: 1224px)',
+	})
+
 	const { t } = useTranslation()
 
 	const [calculations, setCalculations] = useState<Calculation[]>(
@@ -73,7 +84,6 @@ const Calculator: React.FC<CalculatorProps> = ({ level }) => {
 				: 'red'
 
 	useEffect(() => {
-		console.log(calculationNumber)
 		if (calculationNumber == DEFAULT_NUMBER_OF_CALCULATIONS + 1) {
 			setIsGameOver(true)
 		}
@@ -88,7 +98,12 @@ const Calculator: React.FC<CalculatorProps> = ({ level }) => {
 	}
 
 	return (
-		<View style={styles.container}>
+		<View
+			style={{
+				...styles.container,
+				marginLeft: isTabletOrMobileDevice ? 20 : 60,
+			}}
+		>
 			{calculations.map((calculation, idx) => (
 				<View
 					style={{
@@ -102,6 +117,7 @@ const Calculator: React.FC<CalculatorProps> = ({ level }) => {
 					<Text
 						style={{
 							...styles.calculation,
+							marginRight: isTabletOrMobileDevice ? 0 : 10,
 							color: getCalculationColor(idx + 1),
 						}}
 					>
@@ -118,12 +134,16 @@ const Calculator: React.FC<CalculatorProps> = ({ level }) => {
 						onChangeText={(val) => onChangeCalculationInput(idx + 1, val)}
 						value={calculationInputs[idx + 1]}
 						keyboardType="numeric"
+						caretHidden
 					/>
 					<TouchableOpacity
 						onPress={evaluateCalculation}
 						style={{
 							...styles.validateButton,
-							transform: idx + 1 == calculationNumber ? 'none' : [{ scale: 0 }],
+							transform:
+								Platform.OS == 'web' && idx + 1 == calculationNumber
+									? 'none'
+									: [{ scale: 0.01 }],
 						}}
 					>
 						<Text>{t('calculator.validate')}</Text>
@@ -133,7 +153,9 @@ const Calculator: React.FC<CalculatorProps> = ({ level }) => {
 			<SimpleModal isModalVisible={isGameOver} onRequestClose={resetGame}>
 				<View>
 					<Text style={{ fontSize: 20 }}>
-						<strong>{t('memotest.right_guesses')}:</strong>{' '}
+						<Text style={{ fontWeight: 'bold' }}>
+							{t('memotest.right_guesses')}:
+						</Text>{' '}
 						{rightGuesses.length} / {DEFAULT_NUMBER_OF_CALCULATIONS}
 					</Text>
 					<TouchableOpacity onPress={resetGame} style={styles.playAgainButton}>
@@ -150,7 +172,6 @@ export default Calculator
 const styles = StyleSheet.create({
 	container: {
 		minHeight: 550,
-		marginLeft: 60,
 	},
 	calculation: {
 		fontSize: 40,
@@ -158,16 +179,16 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
-		marginRight: 10,
 	},
 	input: {
 		borderWidth: 1,
 		borderColor: '#e0e0e0',
 		borderStyle: 'solid',
-		padding: 5,
-		textAlign: 'right',
+		borderRadius: 5,
+		paddingHorizontal: 20,
+		textAlign: 'center',
 		fontSize: 40,
-		maxWidth: 200,
+		width: 100,
 	},
 	validateButton: {
 		fontSize: 20,

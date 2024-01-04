@@ -27,7 +27,7 @@ export const generateCalculations = (
 		let leftHandSideOperand = Math.floor(Math.random() * 10)
 		let rightHandSideOperand = Math.floor(Math.random() * 10)
 		const operator = AVAILABLE_OPERATIONS[level][
-			Math.floor(Math.floor(Math.random() * AVAILABLE_OPERATIONS[level].length))
+			Math.floor(Math.random() * AVAILABLE_OPERATIONS[level].length)
 		] as Operator
 
 		// Avoid duplicate calculations in the same set

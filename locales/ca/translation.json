@@ -20,5 +20,14 @@
 	},
 	"calculator": {
 		"validate": "Validar"
+	},
+	"settings": {
+		"title": "Configuració",
+		"account_info": "Informació del compte",
+		"log_in": "Inicia sessió",
+		"create_account": "Crear un compte",
+		"privacy_settings": "Ajustaments de privadesa",
+		"app_info": "Informació sobre l'aplicació",
+		"contact_us": "Contacteu amb nosaltres"
 	}
 }

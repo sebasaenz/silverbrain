@@ -36,7 +36,7 @@ export default function App() {
 			<NavigationContainer>
 				<Stack.Navigator
 					initialRouteName="Home"
-					screenOptions={{ animation: 'slide_from_bottom' }}
+					screenOptions={{ headerStyle: { backgroundColor: '#fff8f2' } }}
 				>
 					<Stack.Screen
 						name="Home"
