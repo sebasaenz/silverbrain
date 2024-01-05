@@ -17,9 +17,7 @@ describe('generateMemotestGridData', () => {
 		// Assert
 		expect(
 			MEMOTEST_DUMMY_DATA.every(
-				(el) =>
-					memotestGrid.flat().filter((el1) => el1.title == el.title).length ==
-					2,
+				(el) => memotestGrid.flat().filter((el1) => el1.title == el.title).length == 2,
 			),
 		).toEqual(true)
 	})

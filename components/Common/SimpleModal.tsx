@@ -16,11 +16,7 @@ const SimpleModal: React.FC<SimpleModalProps> = ({
 	children,
 }) => {
 	return (
-		<Modal
-			animationType="slide"
-			visible={isModalVisible}
-			onRequestClose={onRequestClose}
-		>
+		<Modal animationType="slide" visible={isModalVisible} onRequestClose={onRequestClose}>
 			<View style={styles.centeredView}>
 				<View
 					style={{
@@ -30,12 +26,7 @@ const SimpleModal: React.FC<SimpleModalProps> = ({
 						display: showCloseButton ? undefined : 'none',
 					}}
 				>
-					<Ionicons
-						name="md-close"
-						size={32}
-						color="#2e2e2e"
-						onPress={onRequestClose}
-					/>
+					<Ionicons name="md-close" size={32} color="#2e2e2e" onPress={onRequestClose} />
 				</View>
 				<View style={styles.innerContainer}>{children}</View>
 			</View>

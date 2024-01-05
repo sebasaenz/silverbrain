@@ -23,8 +23,7 @@ export default function App() {
 
 	useEffect(() => {
 		;(async () => {
-			const currentLanguage =
-				((await AsyncStorage.getItem('lang')) as AvailableLanguage) || 'es'
+			const currentLanguage = ((await AsyncStorage.getItem('lang')) as AvailableLanguage) || 'es'
 			if (i18n.language !== currentLanguage) {
 				i18n.changeLanguage(currentLanguage)
 			}
@@ -38,11 +37,7 @@ export default function App() {
 					initialRouteName="Home"
 					screenOptions={{ headerStyle: { backgroundColor: '#fff8f2' } }}
 				>
-					<Stack.Screen
-						name="Home"
-						component={Home}
-						options={{ headerShown: false }}
-					/>
+					<Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
 					<Stack.Screen
 						name="Memotest"
 						component={Memotest}

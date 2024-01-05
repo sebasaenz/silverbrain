@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
 import MemotestGrid from '../components/Memotest/MemotestGrid'
 import { useTranslation } from 'react-i18next'
@@ -10,7 +9,6 @@ const Memotest: React.FC<Record<string, never>> = () => {
 		<View style={styles.container}>
 			<Text style={styles.header}>{t('common.memotest')}</Text>
 			<MemotestGrid />
-			<StatusBar style="auto" />
 		</View>
 	)
 }

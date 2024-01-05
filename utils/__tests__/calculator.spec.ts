@@ -110,8 +110,7 @@ describe('calculator', () => {
 				[
 					...new Set(
 						calculations.map(
-							(c) =>
-								`${c.leftHandSideOperand}${c.operator}${c.rightHandSideOperand}`,
+							(c) => `${c.leftHandSideOperand}${c.operator}${c.rightHandSideOperand}`,
 						),
 					),
 				].length,

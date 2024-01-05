@@ -1,17 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import {
-	Animated,
-	FlatList,
-	StyleSheet,
-	Text,
-	TouchableOpacity,
-	View,
-} from 'react-native'
-import {
-	ItemData,
-	MEMOTEST_DUMMY_DATA,
-	generateMemotestGridData,
-} from '../../utils/memotest'
+import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { generateMemotestGridData } from '../../utils/memotest'
+import { ItemData, MEMOTEST_DUMMY_DATA } from '../../constants/memotest'
 import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from 'react-i18next'
 import SimpleModal from '../Common/SimpleModal'
@@ -73,9 +63,7 @@ const Item: React.FC<ItemProps> = ({
 			? '#3e9ed7'
 			: '#9dd5f7'
 
-	const textColor = [...selectedItems, ...guessedItems].includes(item.key!)
-		? '#fff'
-		: '#000'
+	const textColor = [...selectedItems, ...guessedItems].includes(item.key!) ? '#fff' : '#000'
 
 	return (
 		<TouchableOpacity
@@ -94,9 +82,7 @@ const Item: React.FC<ItemProps> = ({
 					styles.title,
 					{ color: textColor },
 					{
-						display: [...selectedItems, ...guessedItems].includes(item.key!)
-							? undefined
-							: 'none',
+						display: [...selectedItems, ...guessedItems].includes(item.key!) ? undefined : 'none',
 					},
 				]}
 			>
@@ -132,13 +118,9 @@ const Memotest: React.FC<Record<string, never>> = () => {
 
 		if (selectedItems.length == 2) {
 			const firstSelectedTitle =
-				dataWithKeys.current[Math.ceil(selectedItems[0] / 4 - 1)][
-					(selectedItems[0] - 1) % 4
-				].title
+				dataWithKeys.current[Math.ceil(selectedItems[0] / 4 - 1)][(selectedItems[0] - 1) % 4].title
 			const secondSelectedTitle =
-				dataWithKeys.current[Math.ceil(selectedItems[1] / 4 - 1)][
-					(selectedItems[1] - 1) % 4
-				].title
+				dataWithKeys.current[Math.ceil(selectedItems[1] / 4 - 1)][(selectedItems[1] - 1) % 4].title
 
 			if (firstSelectedTitle == secondSelectedTitle) {
 				if (
@@ -204,16 +186,11 @@ const Memotest: React.FC<Record<string, never>> = () => {
 
 	return (
 		<View style={styles.container}>
-			<FlatList
-				data={dataWithKeys.current}
-				renderItem={renderRow}
-				style={styles.flatList}
-			/>
+			<FlatList data={dataWithKeys.current} renderItem={renderRow} style={styles.flatList} />
 			<SimpleModal isModalVisible={isGameOver} onRequestClose={resetGame}>
 				<View>
 					<Text style={{ fontSize: 20 }}>
-						<strong>{t('memotest.duration')}:</strong>{' '}
-						{formatDuration(duration)}
+						<strong>{t('memotest.duration')}:</strong> {formatDuration(duration)}
 					</Text>
 					<Text style={{ fontSize: 20 }}>
 						<strong>{t('memotest.right_guesses')}:</strong> {rightGuesses} /{' '}

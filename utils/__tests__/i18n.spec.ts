@@ -21,11 +21,7 @@ describe('i18n', () => {
 
 			// Assert
 			expect(AsyncStorage.setItem).toHaveBeenCalledTimes(1)
-			expect(AsyncStorage.setItem).toHaveBeenNthCalledWith(
-				1,
-				'lang',
-				selectedLanguage,
-			)
+			expect(AsyncStorage.setItem).toHaveBeenNthCalledWith(1, 'lang', selectedLanguage)
 		})
 
 		it('should call i18n.changeLanguage with the selected language', async () => {

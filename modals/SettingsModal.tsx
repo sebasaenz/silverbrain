@@ -7,10 +7,7 @@ interface SettingsModalProps {
 	onRequestClose: () => void
 }
 
-const SettingsModal: React.FC<SettingsModalProps> = ({
-	isUserModalVisible,
-	onRequestClose,
-}) => {
+const SettingsModal: React.FC<SettingsModalProps> = ({ isUserModalVisible, onRequestClose }) => {
 	const { t } = useTranslation()
 	return (
 		<SimpleModal
@@ -25,12 +22,8 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 					alignItems: 'center',
 				}}
 			>
-				<Text style={{ fontSize: 35, marginBottom: 30 }}>
-					{t('settings.title')}
-				</Text>
-				<Text style={{ fontSize: 20, marginBottom: 25 }}>
-					{t('settings.account_info')}
-				</Text>
+				<Text style={{ fontSize: 35, marginBottom: 30 }}>{t('settings.title')}</Text>
+				<Text style={{ fontSize: 20, marginBottom: 25 }}>{t('settings.account_info')}</Text>
 				<View style={{ width: 250, marginBottom: 25 }}>
 					<View style={{ marginBottom: 10 }}>
 						<Button title={t('settings.log_in')} />
@@ -42,9 +35,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 						<Button title={t('settings.privacy_settings')} />
 					</View>
 				</View>
-				<Text style={{ fontSize: 20, marginBottom: 25 }}>
-					{t('settings.app_info')}
-				</Text>
+				<Text style={{ fontSize: 20, marginBottom: 25 }}>{t('settings.app_info')}</Text>
 				<View style={{ width: 250 }}>
 					<View style={{ marginBottom: 10 }}>
 						<Button title={t('settings.contact_us')} />

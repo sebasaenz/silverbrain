@@ -26,8 +26,7 @@ const Home: React.FC<Record<string, never>> = () => {
 
 	const { t, i18n } = useTranslation()
 
-	const [isSettngsModalVisible, setIsSettngsModalVisible] =
-		useState<boolean>(false)
+	const [isSettngsModalVisible, setIsSettngsModalVisible] = useState<boolean>(false)
 
 	const offset = useSharedValue(0)
 
@@ -78,10 +77,7 @@ const Home: React.FC<Record<string, never>> = () => {
 				}}
 			>
 				{AVAILABLE_LANGUAGES.map((flag, idx) => (
-					<TouchableOpacity
-						onPress={() => changeLanguageHandler(flag)}
-						key={flag}
-					>
+					<TouchableOpacity onPress={() => changeLanguageHandler(flag)} key={flag}>
 						<Image
 							style={{
 								...styles.image,

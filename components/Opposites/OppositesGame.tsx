@@ -1,5 +1,5 @@
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { WORDS_WITH_OPPOSITES } from '../../utils/opposites'
+import { WORDS_WITH_OPPOSITES } from '../../constants/opposites'
 import _ from 'lodash'
 import { useEffect, useRef, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
@@ -21,17 +21,13 @@ const OppositesGame: React.FC<Record<string, never>> = () => {
 	)
 	const rightSideWords = useRef(
 		getRandomlySortedArray([
-			...Object.values(
-				WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage],
-			),
+			...Object.values(WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage]),
 		]),
 	)
 
 	const [selectedLeftSideWord, setSelectedLeftSideWord] = useState<string>()
 	const [selectedRightSideWord, setSelectedRightSideWord] = useState<string>()
-	const [correctlyGuessedWords, setCorrectlyGuessedWords] = useState<string[]>(
-		[],
-	)
+	const [correctlyGuessedWords, setCorrectlyGuessedWords] = useState<string[]>([])
 
 	const [isGameOver, setIsGameOver] = useState<boolean>(false)
 
@@ -39,9 +35,8 @@ const OppositesGame: React.FC<Record<string, never>> = () => {
 		if (
 			selectedLeftSideWord &&
 			selectedRightSideWord &&
-			WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage][
-				selectedLeftSideWord
-			] == selectedRightSideWord
+			WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage][selectedLeftSideWord] ==
+				selectedRightSideWord
 		) {
 			setCorrectlyGuessedWords([
 				...correctlyGuessedWords,
@@ -73,9 +68,7 @@ const OppositesGame: React.FC<Record<string, never>> = () => {
 			...Object.keys(WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage]),
 		])
 		rightSideWords.current = getRandomlySortedArray([
-			...Object.values(
-				WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage],
-			),
+			...Object.values(WORDS_WITH_OPPOSITES[i18n.language as AvailableLanguage]),
 		])
 		setIsGameOver(false)
 	}
@@ -139,9 +132,7 @@ const OppositesGame: React.FC<Record<string, never>> = () => {
 			</View>
 			<SimpleModal isModalVisible={isGameOver} onRequestClose={resetGame}>
 				<View>
-					<Text style={{ fontSize: 20, textAlign: 'center' }}>
-						{t('common.well_done')}
-					</Text>
+					<Text style={{ fontSize: 20, textAlign: 'center' }}>{t('common.well_done')}</Text>
 					<TouchableOpacity onPress={resetGame} style={styles.playAgainButton}>
 						<Text>{t('common.play_again')}</Text>
 					</TouchableOpacity>

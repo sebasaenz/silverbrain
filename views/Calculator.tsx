@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import CalculatorSubcomponent from '../components/Calculator/Calculator'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
-import { CalculatorLevel, AVAILABLE_LEVELS } from '../utils/calculator'
+import { CalculatorLevel, AVAILABLE_LEVELS } from '../constants/calculator'
 import _ from 'lodash'
 
 const Calculator: React.FC<Record<string, never>> = () => {
@@ -17,23 +17,18 @@ const Calculator: React.FC<Record<string, never>> = () => {
 			{!hasGameStarted && (
 				<View style={styles.innerContainer}>
 					<View style={{ marginBottom: 30 }}>
-						<Text style={{ fontSize: 25, textAlign: 'center' }}>
-							{t('common.choose_a_level')}
-						</Text>
+						<Text style={{ fontSize: 25, textAlign: 'center' }}>{t('common.choose_a_level')}</Text>
 					</View>
 					{AVAILABLE_LEVELS.map((availableLevel) => (
 						<TouchableOpacity
 							onPress={() => setLevel(availableLevel)}
 							style={{
 								...styles.levelSelector,
-								backgroundColor:
-									availableLevel == level ? 'lightblue' : 'transparent',
+								backgroundColor: availableLevel == level ? 'lightblue' : 'transparent',
 							}}
 							key={availableLevel}
 						>
-							<Text style={styles.levelText}>
-								{_.capitalize(t(`common.${availableLevel}`))}
-							</Text>
+							<Text style={styles.levelText}>{_.capitalize(t(`common.${availableLevel}`))}</Text>
 						</TouchableOpacity>
 					))}
 					{!!level && (
@@ -41,9 +36,7 @@ const Calculator: React.FC<Record<string, never>> = () => {
 							onPress={() => setHasGameStarted(true)}
 							style={{ ...styles.startGameButton, alignSelf: 'center' }}
 						>
-							<Text style={styles.startGameButtonText}>
-								{t('common.start')}
-							</Text>
+							<Text style={styles.startGameButtonText}>{t('common.start')}</Text>
 						</TouchableOpacity>
 					)}
 				</View>

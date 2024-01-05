@@ -3,12 +3,7 @@ import Home from '../Home'
 import { AVAILABLE_LANGUAGES } from '../../i18n'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import SettingsModal from '../../modals/SettingsModal'
-
-interface ComponentTree {
-	type: string
-	props: any
-	children: any[]
-}
+import { ComponentTree } from '../../constants/testing'
 
 describe('Home', () => {
 	it('renders correctly', () => {
@@ -39,35 +34,30 @@ describe('Home', () => {
 		const isTitleDefined =
 			children.filter(
 				(el: ComponentTree) =>
-					el.children &&
-					el.children.length > 0 &&
-					el.children[0] == 'Escoja un juego',
+					el.children && el.children.length > 0 && el.children[0] == 'home.choose_game',
 			).length == 1
 
 		const isMemotestDefined =
 			children.filter(
 				(el: ComponentTree) =>
-					el.children && el.children.length > 0 && el.children[0] == 'Memotest',
+					el.children && el.children.length > 0 && el.children[0] == 'common.memotest',
 			).length == 1
 
 		const isOppositesDefined =
 			children.filter(
 				(el: ComponentTree) =>
-					el.children && el.children.length > 0 && el.children[0] == 'Opuestos',
+					el.children && el.children.length > 0 && el.children[0] == 'common.opposites',
 			).length == 1
 
 		const isCalculatorDefined =
 			children.filter(
 				(el: ComponentTree) =>
-					el.children &&
-					el.children.length > 0 &&
-					el.children[0] == 'Calculadora',
+					el.children && el.children.length > 0 && el.children[0] == 'common.calculator',
 			).length == 1
 
 		const isSettingsModalDefined =
-			children.filter(
-				(el: ComponentTree) => el.type == 'Modal' && el.props.visible == false,
-			).length == 1
+			children.filter((el: ComponentTree) => el.type == 'Modal' && el.props.visible == false)
+				.length == 1
 
 		// Assert
 		expect(areFlagsDefined).toBeTruthy()
@@ -84,15 +74,13 @@ describe('Home', () => {
 		const homeRender = renderer.create(<Home />)
 		const homeInstance = homeRender.root
 
-		const wasSettingsModalVisible =
-			homeInstance.findByType(SettingsModal).props.isUserModalVisible
+		const wasSettingsModalVisible = homeInstance.findByType(SettingsModal).props.isUserModalVisible
 
 		// Act
 		await act(() => {
 			homeInstance.findByType(Ionicons).props.onPress()
 		})
-		const isSettingsModalVisible =
-			homeInstance.findByType(SettingsModal).props.isUserModalVisible
+		const isSettingsModalVisible = homeInstance.findByType(SettingsModal).props.isUserModalVisible
 
 		// Assert
 		expect(wasSettingsModalVisible).toBeFalsy()

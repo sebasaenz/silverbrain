@@ -1,20 +1,12 @@
 import { useTranslation } from 'react-i18next'
-import {
-	View,
-	StyleSheet,
-	Text,
-	TextInput,
-	TouchableOpacity,
-	Platform,
-} from 'react-native'
+import { View, StyleSheet, Text, TextInput, TouchableOpacity, Platform } from 'react-native'
+import { generateCalculations, generateEmptyCalculationInputs } from '../../utils/calculator'
 import {
 	Calculation,
 	CalculatorLevel,
 	Operator,
-	generateCalculations,
-	generateEmptyCalculationInputs,
 	DEFAULT_NUMBER_OF_CALCULATIONS,
-} from '../../utils/calculator'
+} from '../../constants/calculator'
 import { useEffect, useState } from 'react'
 import SimpleModal from '../Common/SimpleModal'
 import { useMediaQuery } from 'react-responsive'
@@ -30,9 +22,7 @@ const Calculator: React.FC<CalculatorProps> = ({ level }) => {
 
 	const { t } = useTranslation()
 
-	const [calculations, setCalculations] = useState<Calculation[]>(
-		generateCalculations(level),
-	)
+	const [calculations, setCalculations] = useState<Calculation[]>(generateCalculations(level))
 
 	const [calculationNumber, setCalculationNumber] = useState<number>(1)
 	const [calculationInputs, setCalculationInputs] = useState<{
@@ -42,18 +32,12 @@ const Calculator: React.FC<CalculatorProps> = ({ level }) => {
 
 	const [isGameOver, setIsGameOver] = useState<boolean>(false)
 
-	const formatCalculation = (
-		calculation: Calculation,
-		forRender: boolean = true,
-	) =>
+	const formatCalculation = (calculation: Calculation, forRender: boolean = true) =>
 		`${calculation.leftHandSideOperand} ${
 			forRender ? formatOperator(calculation.operator) : calculation.operator
 		} ${calculation.rightHandSideOperand}`
 
-	const onChangeCalculationInput = (
-		calculationIndex: number,
-		newVal: string,
-	) => {
+	const onChangeCalculationInput = (calculationIndex: number, newVal: string) => {
 		setCalculationInputs({
 			...calculationInputs,
 			[calculationIndex]: newVal,
@@ -78,8 +62,7 @@ const Calculator: React.FC<CalculatorProps> = ({ level }) => {
 	const getCalculationColor = (indexOneBased: number) =>
 		indexOneBased == calculationNumber
 			? '#000'
-			: indexOneBased < calculationNumber &&
-				  rightGuesses.includes(indexOneBased)
+			: indexOneBased < calculationNumber && rightGuesses.includes(indexOneBased)
 				? 'green'
 				: 'red'
 
@@ -128,8 +111,7 @@ const Calculator: React.FC<CalculatorProps> = ({ level }) => {
 						style={{
 							...styles.input,
 							color: getCalculationColor(idx + 1),
-							borderColor:
-								idx + 1 < calculationNumber ? 'transparent' : '#e0e0e0',
+							borderColor: idx + 1 < calculationNumber ? 'transparent' : '#e0e0e0',
 						}}
 						onChangeText={(val) => onChangeCalculationInput(idx + 1, val)}
 						value={calculationInputs[idx + 1]}
@@ -141,9 +123,7 @@ const Calculator: React.FC<CalculatorProps> = ({ level }) => {
 						style={{
 							...styles.validateButton,
 							transform:
-								Platform.OS == 'web' && idx + 1 == calculationNumber
-									? 'none'
-									: [{ scale: 0.01 }],
+								Platform.OS == 'web' && idx + 1 == calculationNumber ? 'none' : [{ scale: 0.01 }],
 						}}
 					>
 						<Text>{t('calculator.validate')}</Text>
@@ -153,9 +133,7 @@ const Calculator: React.FC<CalculatorProps> = ({ level }) => {
 			<SimpleModal isModalVisible={isGameOver} onRequestClose={resetGame}>
 				<View>
 					<Text style={{ fontSize: 20 }}>
-						<Text style={{ fontWeight: 'bold' }}>
-							{t('memotest.right_guesses')}:
-						</Text>{' '}
+						<Text style={{ fontWeight: 'bold' }}>{t('memotest.right_guesses')}:</Text>{' '}
 						{rightGuesses.length} / {DEFAULT_NUMBER_OF_CALCULATIONS}
 					</Text>
 					<TouchableOpacity onPress={resetGame} style={styles.playAgainButton}>
