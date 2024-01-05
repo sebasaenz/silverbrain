@@ -8,6 +8,8 @@ import eu from './locales/eu/translation.json'
 
 export type AvailableLanguage = 'en' | 'es' | 'ca' | 'eu'
 
+export const AVAILABLE_LANGUAGES: AvailableLanguage[] = ['es', 'ca', 'eu', 'en']
+
 const resources = {
 	en: {
 		translation: en,

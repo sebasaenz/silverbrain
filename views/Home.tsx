@@ -1,18 +1,8 @@
 import { Link } from '@react-navigation/native'
-import { StatusBar } from 'expo-status-bar'
-import {
-	StyleSheet,
-	Text,
-	View,
-	Image,
-	TouchableOpacity,
-	Button,
-} from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { useTranslation } from 'react-i18next'
-import { AvailableLanguage } from '../i18n'
+import { AVAILABLE_LANGUAGES } from '../i18n'
 import images from '../imageLoader'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import SimpleModal from '../components/Common/SimpleModal'
 import { useEffect, useState } from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import Animated, {
@@ -25,6 +15,7 @@ import Animated, {
 } from 'react-native-reanimated'
 import { useMediaQuery } from 'react-responsive'
 import SettingsModal from '../modals/SettingsModal'
+import { changeLanguageHandler } from '../utils/i18n'
 
 const DURATION = 1500
 
@@ -34,29 +25,18 @@ const Home: React.FC<Record<string, never>> = () => {
 	})
 
 	const { t, i18n } = useTranslation()
-	const languages: AvailableLanguage[] = ['es', 'ca', 'eu', 'en']
 
 	const [isSettngsModalVisible, setIsSettngsModalVisible] =
 		useState<boolean>(false)
 
 	const offset = useSharedValue(0)
 
-	const changeLanguageHandler = async (lang: AvailableLanguage) => {
-		try {
-			await AsyncStorage.setItem('lang', lang)
-			i18n.changeLanguage(lang)
-		} catch (e) {
-			throw e
-		}
-	}
-
 	const animatedStyles = useAnimatedStyle(
 		() => ({
-			transform: [{ translateY: offset.value * -8 }],
-			boxShadow: `0 ${offset.value * 20 + 5}px 15px 0 rgba(0, 0, 0, 0, .6)`,
 			width: 200,
 			height: 140,
 			marginBottom: 60,
+			transform: [{ translateY: offset.value * -8 }],
 		}),
 		[offset],
 	)
@@ -97,7 +77,7 @@ const Home: React.FC<Record<string, never>> = () => {
 					left: isTabletOrMobileDevice ? 20 : 30,
 				}}
 			>
-				{languages.map((flag, idx) => (
+				{AVAILABLE_LANGUAGES.map((flag, idx) => (
 					<TouchableOpacity
 						onPress={() => changeLanguageHandler(flag)}
 						key={flag}
@@ -105,7 +85,7 @@ const Home: React.FC<Record<string, never>> = () => {
 						<Image
 							style={{
 								...styles.image,
-								marginRight: idx == languages.length - 1 ? 0 : 15,
+								marginRight: idx == AVAILABLE_LANGUAGES.length - 1 ? 0 : 15,
 								borderColor: i18n.language == flag ? '#171717' : 'transparent',
 							}}
 							source={images.flags[flag]}
@@ -129,7 +109,6 @@ const Home: React.FC<Record<string, never>> = () => {
 			<Link style={styles.link} to={{ screen: 'Calculator' }}>
 				{t('common.calculator')}
 			</Link>
-			<StatusBar style="auto" />
 			<SettingsModal
 				isUserModalVisible={isSettngsModalVisible}
 				onRequestClose={() => setIsSettngsModalVisible(false)}
