@@ -1,5 +1,5 @@
-describe('Calculator', () => {
-    it.skip('Calculator', () => {
-
+describe.skip('Calculator', () => {
+    it('renders correctly', () => {
+        //
     })
 })

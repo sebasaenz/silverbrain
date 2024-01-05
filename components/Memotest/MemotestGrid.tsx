@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
-import { Animated, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import {  FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { generateMemotestGridData } from '../../utils/memotest'
 import { ItemData, MEMOTEST_DUMMY_DATA } from '../../constants/memotest'
 import { useMediaQuery } from 'react-responsive'
 import { useTranslation } from 'react-i18next'
-import SimpleModal from '../Common/SimpleModal'
+import SimpleModal from '../Common/modals/SimpleModal'
 
 interface ItemProps {
 	item: ItemData
@@ -33,7 +33,7 @@ const Row: React.FC<RowProps> = ({
 	isTabletOrMobileDevice,
 }) => {
 	return (
-		<Animated.View style={styles.row}>
+		<View style={styles.row}>
 			{row.map((item) => (
 				<Item
 					item={item}
@@ -45,7 +45,7 @@ const Row: React.FC<RowProps> = ({
 					key={item.key}
 				/>
 			))}
-		</Animated.View>
+		</View>
 	)
 }
 
@@ -92,7 +92,7 @@ const Item: React.FC<ItemProps> = ({
 	)
 }
 
-const Memotest: React.FC<Record<string, never>> = () => {
+const MemotestGrid: React.FC<Record<string, never>> = () => {
 	const { t } = useTranslation()
 	const isTabletOrMobileDevice = useMediaQuery({
 		query: '(max-device-width: 1224px)',
@@ -205,7 +205,7 @@ const Memotest: React.FC<Record<string, never>> = () => {
 	)
 }
 
-export default Memotest
+export default MemotestGrid
 
 const styles = StyleSheet.create({
 	container: {

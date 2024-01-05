@@ -8,7 +8,7 @@ import {
 	DEFAULT_NUMBER_OF_CALCULATIONS,
 } from '../../constants/calculator'
 import { useEffect, useState } from 'react'
-import SimpleModal from '../Common/SimpleModal'
+import SimpleModal from '../Common/modals/SimpleModal'
 import { useMediaQuery } from 'react-responsive'
 
 interface CalculatorProps {

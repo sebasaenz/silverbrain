@@ -1,4 +1,5 @@
-import { MEMOTEST_DUMMY_DATA, generateMemotestGridData } from '../memotest'
+import { generateMemotestGridData } from '../memotest'
+import { MEMOTEST_DUMMY_DATA } from '../../constants/memotest'
 
 describe('generateMemotestGridData', () => {
 	it('should generate a bidimensional matrix with the default grid size', () => {

@@ -14,7 +14,7 @@ import Animated, {
 	Easing,
 } from 'react-native-reanimated'
 import { useMediaQuery } from 'react-responsive'
-import SettingsModal from '../modals/SettingsModal'
+import SettingsModal from '../components/Common/modals/SettingsModal'
 import { changeLanguageHandler } from '../utils/i18n'
 
 const DURATION = 1500

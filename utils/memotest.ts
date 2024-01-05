@@ -1,7 +1,7 @@
 import { getRandomlySortedArray } from './common'
-import { ItemData } from '../constants/memotest'
+import { ItemData, DEFAULT_GRID_SIZE } from '../constants/memotest'
 
-export const generateMemotestGridData = (data: ItemData[], gridSize: number = 4): ItemData[][] => {
+export const generateMemotestGridData = (data: ItemData[], gridSize: number = DEFAULT_GRID_SIZE): ItemData[][] => {
 	let duplicatedRandomizedData = getRandomlySortedArray([...data, ...data])
 	let gridData: ItemData[][] = []
 

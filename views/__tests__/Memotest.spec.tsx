@@ -1,18 +1,23 @@
-import renderer from 'react-test-renderer'
+import renderer, { act } from 'react-test-renderer'
 import Memotest from '../Memotest'
+import MemotestGrid from '../../components/Memotest/MemotestGrid'
 
-describe.skip('Memotest', () => {
-	it('renders correctly', () => {
+describe('Memotest', () => {
+	it('renders correctly', async () => {
 		// Arrange & Act
-		const memotestInstance = renderer.create(<Memotest />)
+		let memotestRender = null
 
-		// console.log(memotestInstance.children)
+		await act(() => {
+			memotestRender = renderer.create(<Memotest />)
+		})
 
-		// const titleInstance = memotestInstance.findByType(Text)
-		// // const memotestGridInstance = memotestInstance.findByType(MemotestGrid)
+		const memotestInstance = memotestRender!.root
 
-		// // Assert
-		// expect(titleInstance.children).toEqual('common.memotest')
-		// // expect(memotestGridInstance).toBeDefined()
+		const titleInstance = memotestInstance.findByProps({ children: 'common.memotest' })
+		const memotestGridInstance = memotestInstance.findByType(MemotestGrid)
+
+		// Assert
+		expect(titleInstance).toBeDefined()
+		expect(memotestGridInstance).toBeDefined()
 	})
 })

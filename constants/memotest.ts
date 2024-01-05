@@ -1,3 +1,5 @@
+export const DEFAULT_GRID_SIZE = 4
+
 export interface ItemData {
 	key?: number
 	title: string

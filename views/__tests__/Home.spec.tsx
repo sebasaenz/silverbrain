@@ -2,7 +2,7 @@ import renderer, { act } from 'react-test-renderer'
 import Home from '../Home'
 import { AVAILABLE_LANGUAGES } from '../../i18n'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import SettingsModal from '../../modals/SettingsModal'
+import SettingsModal from '../../components/Common/modals/SettingsModal'
 import { ComponentTree } from '../../constants/testing'
 
 describe('Home', () => {

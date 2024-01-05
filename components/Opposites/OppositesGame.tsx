@@ -4,7 +4,7 @@ import _ from 'lodash'
 import { useEffect, useRef, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { getRandomlySortedArray } from '../../utils/common'
-import SimpleModal from '../Common/SimpleModal'
+import SimpleModal from '../Common/modals/SimpleModal'
 import { useTranslation } from 'react-i18next'
 import { AvailableLanguage } from '../../i18n'
 

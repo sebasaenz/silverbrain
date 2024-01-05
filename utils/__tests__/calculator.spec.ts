@@ -1,8 +1,8 @@
 import {
-	DEFAULT_NUMBER_OF_CALCULATIONS,
 	generateCalculations,
 	generateEmptyCalculationInputs,
 } from '../calculator'
+import { DEFAULT_NUMBER_OF_CALCULATIONS } from '../../constants/calculator'
 
 describe('calculator', () => {
 	describe('generateCalculations', () => {

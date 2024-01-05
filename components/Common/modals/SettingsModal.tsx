@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import SimpleModal from '../components/Common/SimpleModal'
+import SimpleModal from './SimpleModal'
 import { View, Text, Button } from 'react-native'
 
 interface SettingsModalProps {
