@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 	startGameButton: {
 		borderRadius: 5,
 		padding: 20,
-		width: 130,
+		width: 140,
 		marginTop: 25,
 		display: 'flex',
 		justifyContent: 'center',
