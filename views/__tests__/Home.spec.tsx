@@ -86,4 +86,28 @@ describe('Home', () => {
 		expect(wasSettingsModalVisible).toBeFalsy()
 		expect(isSettingsModalVisible).toBeTruthy()
 	})
+
+	it('should close the settings modal after pressing on the close icon', async () => {
+		// Arrange
+		const homeRender = renderer.create(<Home />)
+		const homeInstance = homeRender.root
+
+		const wasSettingsModalVisible = homeInstance.findByType(SettingsModal).props.isUserModalVisible
+
+		// Act
+		await act(() => {
+			homeInstance.findByType(Ionicons).props.onPress()
+		})
+		const wasSettingsModalVisibleOnSettingsIconPress = homeInstance.findByType(SettingsModal).props.isUserModalVisible
+
+		await act(() => {
+			homeInstance.findByType(SettingsModal).props.onRequestClose()
+		})
+		const isSettingsModalVisible = homeInstance.findByType(SettingsModal).props.isUserModalVisible
+
+		// Assert
+		expect(wasSettingsModalVisible).toBeFalsy()
+		expect(wasSettingsModalVisibleOnSettingsIconPress).toBeTruthy()
+		expect(isSettingsModalVisible).toBeFalsy()
+	})
 })
