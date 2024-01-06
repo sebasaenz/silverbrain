@@ -60,8 +60,8 @@ const Item: React.FC<ItemProps> = ({
 	const backgroundColor = guessedItems.includes(item.key!)
 		? 'green'
 		: selectedItems.includes(item.key!)
-			? '#3e9ed7'
-			: '#9dd5f7'
+			? '#6d5744'
+			: '#c1ac9a'
 
 	const textColor = [...selectedItems, ...guessedItems].includes(item.key!) ? '#fff' : '#000'
 
@@ -190,10 +190,10 @@ const MemotestGrid: React.FC<Record<string, never>> = () => {
 			<SimpleModal isModalVisible={isGameOver} onRequestClose={resetGame}>
 				<View>
 					<Text style={{ fontSize: 20 }}>
-						<strong>{t('memotest.duration')}:</strong> {formatDuration(duration)}
+						<Text style={{ fontWeight: 'bold' }}>{t('memotest.duration')}:</Text> {formatDuration(duration)}
 					</Text>
 					<Text style={{ fontSize: 20 }}>
-						<strong>{t('memotest.right_guesses')}:</strong> {rightGuesses} /{' '}
+						<Text style={{ fontWeight: 'bold' }}>{t('memotest.right_guesses')}:</Text> {rightGuesses} /{' '}
 						{rightGuesses + wrongGuesses}
 					</Text>
 					<TouchableOpacity onPress={resetGame} style={styles.playAgainButton}>
