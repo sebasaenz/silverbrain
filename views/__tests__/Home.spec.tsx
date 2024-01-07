@@ -4,6 +4,12 @@ import { AVAILABLE_LANGUAGES } from '../../i18n'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import SettingsModal from '../../components/Common/modals/SettingsModal'
 import { ComponentTree } from '../../constants/testing'
+import { useMediaQuery } from 'react-responsive'
+
+jest.mock('react-responsive', () => ({
+	...jest.requireActual('react-responsive'),
+	useMediaQuery: jest.fn().mockReturnValue(false)
+}))
 
 describe('Home', () => {
 	it('renders correctly', () => {
@@ -89,8 +95,7 @@ describe('Home', () => {
 
 	it('should close the settings modal after pressing on the close icon', async () => {
 		// Arrange
-		const homeRender = renderer.create(<Home />)
-		const homeInstance = homeRender.root
+		const homeInstance = renderer.create(<Home />).root
 
 		const wasSettingsModalVisible = homeInstance.findByType(SettingsModal).props.isUserModalVisible
 
@@ -109,5 +114,33 @@ describe('Home', () => {
 		expect(wasSettingsModalVisible).toBeFalsy()
 		expect(wasSettingsModalVisibleOnSettingsIconPress).toBeTruthy()
 		expect(isSettingsModalVisible).toBeFalsy()
+	})
+
+	it('should render the settings icon container and the flags container with their corresponding values in higher screen resolutions', () => {
+		// Arrange
+		(useMediaQuery as jest.Mock).mockReturnValue(true)
+
+		// Act
+		const homeInstance = renderer.create(<Home />).root
+
+		// Assert
+		expect(homeInstance.findByProps({ testID: 'icon-container' }).props.style.top).toEqual(58)
+		expect(homeInstance.findByProps({ testID: 'icon-container' }).props.style.right).toEqual(20)
+		expect(homeInstance.findByProps({ testID: 'flags-container' }).props.style.top).toEqual(60)
+		expect(homeInstance.findByProps({ testID: 'flags-container' }).props.style.left).toEqual(20)
+	})
+
+	it('should render the settings icon container and the flags container with their corresponding values in higher screen resolutions', () => {
+		// Arrange
+		(useMediaQuery as jest.Mock).mockReturnValue(false)
+
+		// Act
+		const homeInstance = renderer.create(<Home />).root
+
+		// Assert
+		expect(homeInstance.findByProps({ testID: 'icon-container' }).props.style.top).toEqual(20)
+		expect(homeInstance.findByProps({ testID: 'icon-container' }).props.style.right).toEqual(30)
+		expect(homeInstance.findByProps({ testID: 'flags-container' }).props.style.top).toEqual(25)
+		expect(homeInstance.findByProps({ testID: 'flags-container' }).props.style.left).toEqual(30)
 	})
 })

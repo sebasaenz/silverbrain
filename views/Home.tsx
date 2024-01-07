@@ -59,6 +59,7 @@ const Home: React.FC<Record<string, never>> = () => {
 					top: isTabletOrMobileDevice ? 58 : 20,
 					right: isTabletOrMobileDevice ? 20 : 30,
 				}}
+				testID="icon-container"
 			>
 				<Ionicons
 					name="md-settings-sharp"
@@ -75,6 +76,7 @@ const Home: React.FC<Record<string, never>> = () => {
 					top: isTabletOrMobileDevice ? 60 : 25,
 					left: isTabletOrMobileDevice ? 20 : 30,
 				}}
+				testID="flags-container"
 			>
 				{AVAILABLE_LANGUAGES.map((flag, idx) => (
 					<TouchableOpacity onPress={() => changeLanguageHandler(flag)} key={flag}>
