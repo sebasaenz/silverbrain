@@ -24,9 +24,10 @@ const Calculator: React.FC<Record<string, never>> = () => {
 							onPress={() => setLevel(availableLevel)}
 							style={{
 								...styles.levelSelector,
-								backgroundColor: availableLevel == level ? 'lightblue' : 'transparent',
+								backgroundColor: level && availableLevel == level ? 'lightblue' : 'transparent',
 							}}
 							key={availableLevel}
+							testID={availableLevel}
 						>
 							<Text style={styles.levelText}>{_.capitalize(t(`common.${availableLevel}`))}</Text>
 						</TouchableOpacity>
@@ -35,13 +36,14 @@ const Calculator: React.FC<Record<string, never>> = () => {
 						<TouchableOpacity
 							onPress={() => setHasGameStarted(true)}
 							style={{ ...styles.startGameButton, alignSelf: 'center' }}
+							testID="start-button"
 						>
 							<Text style={styles.startGameButtonText}>{t('common.start')}</Text>
 						</TouchableOpacity>
 					)}
 				</View>
 			)}
-			{hasGameStarted && <CalculatorSubcomponent level={level || 'easy'} />}
+			{hasGameStarted && <CalculatorSubcomponent level={level!} />}
 		</View>
 	)
 }
